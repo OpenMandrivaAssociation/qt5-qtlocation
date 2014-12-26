@@ -47,23 +47,24 @@ Window System. Qt is written in C++ and is fully object-oriented.
 
 %files 
 %{_qt5_prefix}/qml/QtLocation
-%_qt5_exampledir/location
 %{_qt5_plugindir}/geoservices
 
 #------------------------------------------------------------------------------
 
-%package -n qtpositioning5
-Summary: Qt%{api} Positioning Component Library
-Group: System/Libraries
-Requires: %{qtpositioning} = %{version}
-Provides: qt5positioning = %{version}
+%package -n	qt5-qtpositioning
+Summary:	Qt%{api} Positioning Component Library
+Group:		System/Libraries
+Requires:	%{qtpositioning} = %{version}
+Provides:	qt5positioning = %{version}
+Provides:	qt5-positioning = %{version}
 
-%description -n qtpositioning5
+%description -n qt5-qtpositioning
 Qt%{api} Component Library.
 
-The Positioning module provides positioning information via QML and C++ interfaces.
+The Positioning module provides positioning
+information via QML and C++ interfaces.
 
-%files -n qtpositioning5
+%files -n qt5-qtpositioning
 %{_qt5_prefix}/qml/QtPositioning
 %{_qt5_plugindir}/position
 %_qt5_exampledir/qtpositioning
@@ -77,7 +78,8 @@ Group: System/Libraries
 %description -n %{qtpositioning}
 Qt%{api} Component Library.
 
-The Positioning module provides positioning information via QML and C++ interfaces.
+The Positioning module provides positioning
+information via QML and C++ interfaces.
 
 %files -n %{qtpositioning}
 %{_qt5_libdir}/libQt5Positioning.so.%{api}*
@@ -147,6 +149,7 @@ Devel files needed to build apps based on Qt Location.
 %{_qt5_libdir}/libQt5Location.so
 %{_qt5_libdir}/pkgconfig/Qt5Location.pc
 %{_qt5_includedir}/QtLocation
+%{_qt5_exampledir}/location
 %exclude %{_qt5_includedir}/QtLocation/%qtversion
 %{_qt5_prefix}/mkspecs/modules/qt_lib_location.pri
 
