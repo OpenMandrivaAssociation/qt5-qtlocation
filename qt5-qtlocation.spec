@@ -37,6 +37,7 @@ BuildRequires:	pkgconfig(Qt5XmlPatterns) >= %{version}
 BuildRequires:	pkgconfig(Qt5Multimedia) >= %{version}
 BuildRequires:	pkgconfig(Qt5Declarative) >= %{version}
 BuildRequires:	qt5-qtqml-private-devel >= %{version}
+BuildRequires:	qt5-qtquick-private-devel >= %{version}
 BuildRequires:	pkgconfig(geoclue)
 
 %description
