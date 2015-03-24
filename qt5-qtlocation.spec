@@ -1,10 +1,6 @@
-%define api 5
+%define api %(echo %{version} |cut -d. -f1)
 %define major %api
-
-%define qtminor 4
-%define qtsubminor 1
-
-%define qtversion %{api}.%{qtminor}.%{qtsubminor}
+%define beta alpha
 
 %define qtlocation %mklibname qt%{api}location %{major}
 %define qtlocationd %mklibname qt%{api}location -d
@@ -17,16 +13,21 @@
 
 %define _qt5_prefix %{_libdir}/qt%{api}
 
-%define qttarballdir qtlocation-opensource-src-%{qtversion}
+%define qttarballdir qtlocation-opensource-src-%{version}%{?beta:-%{beta}}
 
 Name:		qt5-qtlocation
-Version:	%{qtversion}
+Version:	5.5.0
+%if 0%{?beta:1}
+Release:	0.%{beta}.1
+Source0:	http://download.qt.io/development_releases/qt/%(echo %{version} |cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
+%else
 Release:	1
+Source0:	http://download.qt.io/official_releases/qt/%(echo %{version} |cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
+%endif
 Summary:	Qt Location
 Group:		Development/KDE and Qt
 License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
 URL:		http://www.qt-project.org
-Source0:	http://download.qt-project.org/official_releases/qt/%{api}.%{qtminor}/%{version}/submodules/%{qttarballdir}.tar.xz
 Patch0:		qtlocation-opensource-src-5.4.0-G_VALUE_INIT.patch
 BuildRequires:	qt5-qtbase-devel >= %{version}
 BuildRequires:	pkgconfig(Qt5Core) = %{version}
@@ -35,7 +36,7 @@ BuildRequires:	pkgconfig(Qt5Qml) >= %{version}
 BuildRequires:	pkgconfig(Qt5Svg) >= %{version}
 BuildRequires:	pkgconfig(Qt5XmlPatterns) >= %{version}
 BuildRequires:	pkgconfig(Qt5Multimedia) >= %{version}
-BuildRequires:	pkgconfig(Qt5Declarative) >= %{version}
+BuildRequires:	pkgconfig(Qt5Quick) >= %{version}
 BuildRequires:	qt5-qtqml-private-devel >= %{version}
 BuildRequires:	qt5-qtquick-private-devel >= %{version}
 BuildRequires:	pkgconfig(geoclue)
@@ -102,7 +103,7 @@ Devel files needed to build apps based on Qt Positioning.
 %{_qt5_exampledir}/positioning
 %{_qt5_prefix}/mkspecs/modules/qt_lib_positioning.pri
 %{_qt5_includedir}/QtPositioning
-%exclude %{_qt5_includedir}/QtPositioning/%qtversion
+%exclude %{_qt5_includedir}/QtPositioning/%version
 
 #------------------------------------------------------------------------------
 
@@ -116,7 +117,7 @@ Provides: qt5-positioning-private-devel = %version
 Devel files needed to build apps based on QtPositioning.
 
 %files -n %{qtpositioning_p_d}
-%{_qt5_includedir}/QtPositioning/%qtversion
+%{_qt5_includedir}/QtPositioning/%version
 %{_qt5_prefix}/mkspecs/modules/qt_lib_positioning_private.pri
 
 #------------------------------------------------------------------------------
@@ -150,7 +151,7 @@ Devel files needed to build apps based on Qt Location.
 %{_qt5_libdir}/pkgconfig/Qt5Location.pc
 %{_qt5_includedir}/QtLocation
 %{_qt5_exampledir}/location
-%exclude %{_qt5_includedir}/QtLocation/%qtversion
+%exclude %{_qt5_includedir}/QtLocation/%version
 %{_qt5_prefix}/mkspecs/modules/qt_lib_location.pri
 
 #------------------------------------------------------------------------------
@@ -165,7 +166,7 @@ Provides: qt5-location-private-devel = %version
 Devel files needed to build apps based on QtLocation.
 
 %files -n %{qtlocation_p_d}
-%{_qt5_includedir}/QtLocation/%qtversion
+%{_qt5_includedir}/QtLocation/%version
 %{_qt5_prefix}/mkspecs/modules/qt_lib_location_private.pri
 
 #------------------------------------------------------------------------------
