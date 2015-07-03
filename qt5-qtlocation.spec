@@ -1,6 +1,6 @@
 %define api %(echo %{version} |cut -d. -f1)
 %define major %api
-%define beta rc
+%define beta %nil
 
 %define qtlocation %mklibname qt%{api}location %{major}
 %define qtlocationd %mklibname qt%{api}location -d
@@ -18,10 +18,10 @@
 Name:		qt5-qtlocation
 Version:	5.5.0
 %if 0%{?beta:1}
-$1.%{beta}.1
+Release:	1.%{beta}.1
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version} |cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-$1
+Release:	1
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version} |cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
 Summary:	Qt Location
