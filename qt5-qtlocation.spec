@@ -14,9 +14,9 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtlocation
-Version:	5.6.0
+Version:	5.6.1
 %if "%{beta}" != ""
-Release:	1.%{beta}.1
+Release:	0.%{beta}.1
 %define qttarballdir qtlocation-opensource-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
@@ -68,7 +68,6 @@ information via QML and C++ interfaces.
 %files -n qt5-qtpositioning
 %{_qt5_prefix}/qml/QtPositioning
 %{_qt5_plugindir}/position
-%_qt5_exampledir/qtpositioning
 
 #------------------------------------------------------------------------------
 
