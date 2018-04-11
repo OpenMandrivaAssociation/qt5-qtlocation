@@ -1,20 +1,27 @@
 %define api %(echo %{version} |cut -d. -f1)
 %define major %api
-%define beta %{nil}
+%define beta beta3
 
 %define qtlocation %mklibname qt%{api}location %{major}
 %define qtlocationd %mklibname qt%{api}location -d
 %define qtlocation_p_d %mklibname qt%{api}location-private -d
 
+%define qtlocationlabs %mklibname qt%{api}locationlabs %{major}
+%define qtlocationlabsd %mklibname qt%{api}locationlabs -d
+%define qtlocationlabs_p_d %mklibname qt%{api}locationlabs-private -d
+
 %define qtpositioning %mklibname qt%{api}positioning %{major}
 %define qtpositioningd %mklibname qt%{api}positioning -d
 %define qtpositioning_p_d %mklibname qt%{api}positioning-private -d
 
+%define qtpositioningquick %mklibname qt%{api}positioningquick %{major}
+%define qtpositioningquickd %mklibname qt%{api}positioningquick -d
+%define qtpositioningquick_p_d %mklibname qt%{api}positioning-privatequick -d
 
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtlocation
-Version:	5.10.1
+Version:	5.11.0
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
@@ -121,6 +128,55 @@ Devel files needed to build apps based on QtPositioning.
 
 #------------------------------------------------------------------------------
 
+%package -n %{qtpositioningquick}
+Summary: Qt%{api}Quick positioning Library
+Group: System/Libraries
+
+%description -n %{qtpositioningquick}
+Qt%{api}Quick positioning Library.
+
+The Positioning module provides positioning
+information via QML and C++ interfaces.
+
+%files -n %{qtpositioningquick}
+%{_qt5_libdir}/libQt5PositioningQuick.so.%{api}*
+
+#------------------------------------------------------------------------------
+
+%package -n %{qtpositioningquickd}
+Summary: Devel files needed to build apps based on QtPositioningQuick
+Group: Development/KDE and Qt
+Requires: %{qtpositioning} = %version
+
+%description -n %{qtpositioningquickd}
+Devel files needed to build apps based on Qt PositioningQuick.
+
+%files -n %{qtpositioningquickd}
+%{_qt5_includedir}/QtPositioningQuick
+%{_qt5_libdir}/libQt5PositioningQuick.so
+%{_libdir}/libQt5PositioningQuick.prl
+%exclude %{_qt5_includedir}/QtPositioningQuick/%version
+%{_qt5_prefix}/mkspecs/modules/qt_lib_positioningquick.pri
+%{_libdir}/cmake/Qt5PositioningQuick
+%{_libdir}/pkgconfig/Qt5PositioningQuick.pc
+
+#------------------------------------------------------------------------------
+
+%package -n %{qtpositioningquick_p_d}
+Summary: Devel files needed to build apps based on QtPositioningQuick
+Group:    Development/KDE and Qt
+Requires: %{qtpositioningquickd} = %version
+Provides: qt5-positioningquick-private-devel = %version
+
+%description -n %{qtpositioningquick_p_d}
+Devel files needed to build apps based on QtPositioningQuick.
+
+%files -n %{qtpositioningquick_p_d}
+%{_qt5_includedir}/QtPositioningQuick/%version
+%{_qt5_prefix}/mkspecs/modules/qt_lib_positioningquick_private.pri
+
+#------------------------------------------------------------------------------
+
 %package -n %{qtlocation}
 Summary: Qt%{api} Component Library
 Group: System/Libraries
@@ -167,6 +223,55 @@ Devel files needed to build apps based on QtLocation.
 %files -n %{qtlocation_p_d}
 %{_qt5_includedir}/QtLocation/%version
 %{_qt5_prefix}/mkspecs/modules/qt_lib_location_private.pri
+
+#------------------------------------------------------------------------------
+
+%package -n %{qtlocationlabs}
+Summary: Experimental parts of the Qt%{api} location library
+Group: System/Libraries
+
+%description -n %{qtlocationlabs}
+Qt%{api} Component Library.
+
+The Location module provides location information via QML and C++ interfaces.
+
+%files -n %{qtlocationlabs}
+%{_qt5_libdir}/libQt5LocationLabs.so.%{api}*
+
+#------------------------------------------------------------------------------
+
+%package -n %{qtlocationlabsd}
+Summary: Devel files needed to build apps based on QtLocationLabs
+Group: Development/KDE and Qt
+Requires: %{qtlocation} = %version
+
+%description -n %{qtlocationlabsd}
+Devel files needed to build apps based on Qt LocationLabs.
+
+%files -n %{qtlocationlabsd}
+%{_qt5_libdir}/cmake/Qt5LocationLabs
+%{_qt5_libdir}/libQt5LocationLabs.prl
+%{_qt5_libdir}/libQt5LocationLabs.so
+%{_qt5_libdir}/pkgconfig/Qt5LocationLabs.pc
+%{_qt5_includedir}/QtLocationLabs
+%exclude %{_qt5_includedir}/QtLocationLabs/%version
+%{_qt5_prefix}/mkspecs/modules/qt_lib_locationlabs.pri
+%{_libdir}/qt5/qml/Qt/labs/location
+
+#------------------------------------------------------------------------------
+
+%package -n %{qtlocationlabs_p_d}
+Summary: Devel files needed to build apps based on QtLocationLabs
+Group:    Development/KDE and Qt
+Requires: %{qtlocationd} = %version
+Provides: qt5-location-private-devel = %version
+
+%description -n %{qtlocationlabs_p_d}
+Devel files needed to build apps based on QtLocationLabs.
+
+%files -n %{qtlocationlabs_p_d}
+%{_qt5_includedir}/QtLocationLabs/%version
+%{_qt5_prefix}/mkspecs/modules/qt_lib_locationlabs_private.pri
 
 #------------------------------------------------------------------------------
 
