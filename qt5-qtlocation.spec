@@ -47,6 +47,8 @@ BuildRequires:	pkgconfig(Qt5Quick) >= %{version}
 BuildRequires:	qt5-qtqml-private-devel >= %{version}
 BuildRequires:	qt5-qtquick-private-devel >= %{version}
 BuildRequires:	pkgconfig(geoclue)
+# For the Provides: generator
+BuildRequires:	cmake >= 3.11.0-1
 
 %description
 Qt is a GUI software toolkit which simplifies the task of writing and
