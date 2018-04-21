@@ -1,6 +1,11 @@
+# FIXME as of clang 6.0, qtlocation 5.11.0-beta4, we get a compile error
+# (unresolved symbol in QtClipperLib) when using LTO. Re-enable LTO when
+# this is fixed.
+%define _disable_lto 1
+
 %define api %(echo %{version} |cut -d. -f1)
 %define major %api
-%define beta beta3
+%define beta beta4
 
 %define qtlocation %mklibname qt%{api}location %{major}
 %define qtlocationd %mklibname qt%{api}location -d
