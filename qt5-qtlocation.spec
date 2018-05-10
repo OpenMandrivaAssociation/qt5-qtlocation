@@ -11,10 +11,6 @@
 %define qtlocationd %mklibname qt%{api}location -d
 %define qtlocation_p_d %mklibname qt%{api}location-private -d
 
-%define qtlocationlabs %mklibname qt%{api}locationlabs %{major}
-%define qtlocationlabsd %mklibname qt%{api}locationlabs -d
-%define qtlocationlabs_p_d %mklibname qt%{api}locationlabs-private -d
-
 %define qtpositioning %mklibname qt%{api}positioning %{major}
 %define qtpositioningd %mklibname qt%{api}positioning -d
 %define qtpositioning_p_d %mklibname qt%{api}positioning-private -d
@@ -63,6 +59,7 @@ Window System. Qt is written in C++ and is fully object-oriented.
 %files 
 %{_qt5_prefix}/qml/QtLocation
 %{_qt5_plugindir}/geoservices
+%{_libdir}/qt5/qml/Qt/labs/location
 
 #------------------------------------------------------------------------------
 
@@ -115,6 +112,7 @@ Devel files needed to build apps based on Qt Positioning.
 %{_qt5_libdir}/cmake/Qt5Positioning
 %{_qt5_exampledir}/positioning
 %{_qt5_prefix}/mkspecs/modules/qt_lib_positioning.pri
+%{_libdir}/qt5/mkspecs/modules/qt_lib_location_private.pri
 %{_qt5_includedir}/QtPositioning
 %exclude %{_qt5_includedir}/QtPositioning/%version
 
@@ -215,70 +213,6 @@ Devel files needed to build apps based on Qt Location.
 %{_qt5_exampledir}/location
 %exclude %{_qt5_includedir}/QtLocation/%version
 %{_qt5_prefix}/mkspecs/modules/qt_lib_location.pri
-
-#------------------------------------------------------------------------------
-
-%package -n %{qtlocation_p_d}
-Summary: Devel files needed to build apps based on QtLocation
-Group:    Development/KDE and Qt
-Requires: %{qtlocationd} = %version
-Provides: qt5-location-private-devel = %version
-
-%description -n %{qtlocation_p_d}
-Devel files needed to build apps based on QtLocation.
-
-%files -n %{qtlocation_p_d}
-%{_qt5_includedir}/QtLocation/%version
-%{_qt5_prefix}/mkspecs/modules/qt_lib_location_private.pri
-
-#------------------------------------------------------------------------------
-
-%package -n %{qtlocationlabs}
-Summary: Experimental parts of the Qt%{api} location library
-Group: System/Libraries
-
-%description -n %{qtlocationlabs}
-Qt%{api} Component Library.
-
-The Location module provides location information via QML and C++ interfaces.
-
-%files -n %{qtlocationlabs}
-%{_qt5_libdir}/libQt5LocationLabs.so.%{api}*
-
-#------------------------------------------------------------------------------
-
-%package -n %{qtlocationlabsd}
-Summary: Devel files needed to build apps based on QtLocationLabs
-Group: Development/KDE and Qt
-Requires: %{qtlocation} = %version
-
-%description -n %{qtlocationlabsd}
-Devel files needed to build apps based on Qt LocationLabs.
-
-%files -n %{qtlocationlabsd}
-%{_qt5_libdir}/cmake/Qt5LocationLabs
-%{_qt5_libdir}/libQt5LocationLabs.prl
-%{_qt5_libdir}/libQt5LocationLabs.so
-%{_qt5_libdir}/pkgconfig/Qt5LocationLabs.pc
-%{_qt5_includedir}/QtLocationLabs
-%exclude %{_qt5_includedir}/QtLocationLabs/%version
-%{_qt5_prefix}/mkspecs/modules/qt_lib_locationlabs.pri
-%{_libdir}/qt5/qml/Qt/labs/location
-
-#------------------------------------------------------------------------------
-
-%package -n %{qtlocationlabs_p_d}
-Summary: Devel files needed to build apps based on QtLocationLabs
-Group:    Development/KDE and Qt
-Requires: %{qtlocationd} = %version
-Provides: qt5-location-private-devel = %version
-
-%description -n %{qtlocationlabs_p_d}
-Devel files needed to build apps based on QtLocationLabs.
-
-%files -n %{qtlocationlabs_p_d}
-%{_qt5_includedir}/QtLocationLabs/%version
-%{_qt5_prefix}/mkspecs/modules/qt_lib_locationlabs_private.pri
 
 #------------------------------------------------------------------------------
 
