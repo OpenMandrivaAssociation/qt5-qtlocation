@@ -47,7 +47,8 @@ BuildRequires:	pkgconfig(Qt5Multimedia) >= %{version}
 BuildRequires:	pkgconfig(Qt5Quick) >= %{version}
 BuildRequires:	qt5-qtqml-private-devel >= %{version}
 BuildRequires:	qt5-qtquick-private-devel >= %{version}
-BuildRequires:	pkgconfig(geoclue)
+BuildRequires:	pkgconfig(geoclue-2.0)
+BuildRequires:	pkgconfig(gypsy)
 # For the Provides: generator
 BuildRequires:	cmake >= 3.11.0-1
 
