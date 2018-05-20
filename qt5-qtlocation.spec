@@ -51,6 +51,8 @@ BuildRequires:	pkgconfig(geoclue-2.0)
 BuildRequires:	pkgconfig(gypsy)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(icu-uc)
+BuildRequires:	pkgconfig(libssl)
+BuildRequires:	pkgconfig(libcrypto)
 # For the Provides: generator
 BuildRequires:	cmake >= 3.11.0-1
 
