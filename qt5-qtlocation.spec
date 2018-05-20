@@ -49,6 +49,8 @@ BuildRequires:	qt5-qtqml-private-devel >= %{version}
 BuildRequires:	qt5-qtquick-private-devel >= %{version}
 BuildRequires:	pkgconfig(geoclue-2.0)
 BuildRequires:	pkgconfig(gypsy)
+BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(icu-uc)
 # For the Provides: generator
 BuildRequires:	cmake >= 3.11.0-1
 
