@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   qtlocation-opensource-src-5.9.2.tar.xz: fb23d3733d97e127069db5907b1d62efcd587b9b
+sources:
+  qtlocation-opensource-src-5.9.6.tar.xz: f3b5db671f7610ea0a7e63f1b4a55c3b06807093
