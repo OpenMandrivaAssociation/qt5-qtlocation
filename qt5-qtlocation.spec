@@ -61,7 +61,7 @@ Qt is a GUI software toolkit which simplifies the task of writing and
 maintaining GUI (Graphical User Interface) applications for the X
 Window System. Qt is written in C++ and is fully object-oriented.
 
-%files 
+%files
 %{_qt5_prefix}/qml/QtLocation
 %{_qt5_plugindir}/geoservices
 %{_libdir}/qt5/qml/Qt/labs/location
@@ -222,16 +222,15 @@ Devel files needed to build apps based on Qt Location.
 #------------------------------------------------------------------------------
 
 %prep
-%setup -q -n %qttarballdir
-%apply_patches
+%autosetup -n %qttarballdir -p1
 
 %build
 %qmake_qt5
-%make
+%make_build
 
 #------------------------------------------------------------------------------
 %install
-%makeinstall_std INSTALL_ROOT=%{buildroot}
+%make_install INSTALL_ROOT=%{buildroot}
 
 ## .prl/.la file love
 # nuke .prl reference(s) to %%buildroot, excessive (.la-like) libs
