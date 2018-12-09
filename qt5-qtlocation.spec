@@ -28,7 +28,7 @@ Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%(echo %{beta} |sed -e "s,1$,,")/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	3
+Release:	4
 %define qttarballdir qtlocation-everywhere-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -156,7 +156,7 @@ information via QML and C++ interfaces.
 %package -n %{qtpositioningquickd}
 Summary: Devel files needed to build apps based on QtPositioningQuick
 Group: Development/KDE and Qt
-Requires: %{qtpositioning} = %version
+Requires: %{qtpositioningquick} = %version
 
 %description -n %{qtpositioningquickd}
 Devel files needed to build apps based on Qt PositioningQuick.
