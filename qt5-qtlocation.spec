@@ -5,7 +5,7 @@
 
 %define api %(echo %{version} |cut -d. -f1)
 %define major %api
-%define beta %{nil}
+%define beta rc3
 
 %define qtlocation %mklibname qt%{api}location %{major}
 %define qtlocationd %mklibname qt%{api}location -d
@@ -22,7 +22,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtlocation
-Version:	5.12.3
+Version:	5.13.0
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
