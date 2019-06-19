@@ -5,7 +5,7 @@
 
 %define api %(echo %{version} |cut -d. -f1)
 %define major %api
-%define beta rc3
+%define beta %{nil}
 
 %define qtlocation %mklibname qt%{api}location %{major}
 %define qtlocationd %mklibname qt%{api}location -d
