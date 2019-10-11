@@ -1,8 +1,3 @@
-# FIXME as of clang 6.0, qtlocation 5.11.0-beta4, we get a compile error
-# (unresolved symbol in QtClipperLib) when using LTO. Re-enable LTO when
-# this is fixed.
-#define _disable_lto 1
-
 %define api %(echo %{version} |cut -d. -f1)
 %define major %api
 %define beta beta1
@@ -47,6 +42,7 @@ BuildRequires:	pkgconfig(Qt5Multimedia) >= %{version}
 BuildRequires:	pkgconfig(Qt5Quick) >= %{version}
 BuildRequires:	qt5-qtqml-private-devel >= %{version}
 BuildRequires:	qt5-qtquick-private-devel >= %{version}
+BuildRequires:	qt5-qtqmlmodels-private-devel
 BuildRequires:	pkgconfig(geoclue-2.0)
 BuildRequires:	pkgconfig(gypsy)
 BuildRequires:	pkgconfig(zlib)
