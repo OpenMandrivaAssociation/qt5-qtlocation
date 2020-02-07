@@ -32,6 +32,7 @@ Group:		Development/KDE and Qt
 License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
 URL:		http://www.qt.io
 Patch0:		qtlocation-everywhere-src-5.6.0-G_VALUE_INIT.patch
+Patch1:		qtlocation-clang10-c++20.patch
 BuildRequires:	qt5-qtbase-devel >= %{version}
 BuildRequires:	pkgconfig(Qt5Core) = %{version}
 BuildRequires:	pkgconfig(Qt5Gui) >= %{version}

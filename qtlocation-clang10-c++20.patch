@@ -1,0 +1,13 @@
+diff -up qtlocation-everywhere-src-5.14.1/src/3rdparty/mapbox-gl-native/deps/rapidjson/1.1.0/include/rapidjson/document.h.omv~ qtlocation-everywhere-src-5.14.1/src/3rdparty/mapbox-gl-native/deps/rapidjson/1.1.0/include/rapidjson/document.h
+--- qtlocation-everywhere-src-5.14.1/src/3rdparty/mapbox-gl-native/deps/rapidjson/1.1.0/include/rapidjson/document.h.omv~	2020-02-07 19:48:41.709944762 +0100
++++ qtlocation-everywhere-src-5.14.1/src/3rdparty/mapbox-gl-native/deps/rapidjson/1.1.0/include/rapidjson/document.h	2020-02-07 19:48:52.988945260 +0100
+@@ -169,7 +169,9 @@ public:
+     //! @name relations
+     //@{
+     bool operator==(ConstIterator that) const { return ptr_ == that.ptr_; }
++#if __cplusplus < 201707L
+     bool operator!=(ConstIterator that) const { return ptr_ != that.ptr_; }
++#endif
+     bool operator<=(ConstIterator that) const { return ptr_ <= that.ptr_; }
+     bool operator>=(ConstIterator that) const { return ptr_ >= that.ptr_; }
+     bool operator< (ConstIterator that) const { return ptr_ < that.ptr_; }
