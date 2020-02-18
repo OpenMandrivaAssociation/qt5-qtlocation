@@ -1,6 +1,6 @@
 %define api %(echo %{version} |cut -d. -f1)
 %define major %api
-%define beta %{nil}
+%define beta alpha
 
 %define qtlocation %mklibname qt%{api}location %{major}
 %define qtlocationd %mklibname qt%{api}location -d
@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtlocation
-Version:	5.14.1
+Version:	5.15.0
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
@@ -33,6 +33,7 @@ License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
 URL:		http://www.qt.io
 Patch0:		qtlocation-everywhere-src-5.6.0-G_VALUE_INIT.patch
 Patch1:		qtlocation-clang10-c++20.patch
+Patch2:		qtlocation-c++20.patch
 BuildRequires:	qt5-qtbase-devel >= %{version}
 BuildRequires:	pkgconfig(Qt5Core) = %{version}
 BuildRequires:	pkgconfig(Qt5Gui) >= %{version}
@@ -50,6 +51,7 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(icu-uc)
 BuildRequires:	pkgconfig(libssl)
 BuildRequires:	pkgconfig(libcrypto)
+BuildRequires:	boost-devel
 # For the Provides: generator
 BuildRequires:	cmake >= 3.11.0-1
 
@@ -220,6 +222,10 @@ Devel files needed to build apps based on Qt Location.
 
 %prep
 %autosetup -n %qttarballdir -p1
+
+# Get rid of outdated bundled boost, let's use system boost
+rm -rf src/3rdparty/mapbox-gl-native/deps/boost
+sed -i -e '/boost/d' src/3rdparty/mapbox-gl-native/mapbox-gl-native.pro
 
 %build
 %qmake_qt5
