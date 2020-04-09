@@ -19,7 +19,7 @@
 Name:		qt5-qtlocation
 Version:	5.15.0
 %if "%{beta}" != ""
-Release:	0.%{beta}.1
+Release:	0.%{beta}.2
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
@@ -89,6 +89,7 @@ information via QML and C++ interfaces.
 %package -n %{qtpositioning}
 Summary: Qt%{api} Component Library
 Group: System/Libraries
+Requires: qt5-qtpositioning = %{EVRD}
 
 %description -n %{qtpositioning}
 Qt%{api} Component Library.
