@@ -1,6 +1,6 @@
 %define api %(echo %{version} |cut -d. -f1)
 %define major %api
-%define beta rc
+%define beta rc2
 
 %define qtlocation %mklibname qt%{api}location %{major}
 %define qtlocationd %mklibname qt%{api}location -d
@@ -33,7 +33,8 @@ License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
 URL:		http://www.qt.io
 Patch0:		qtlocation-everywhere-src-5.6.0-G_VALUE_INIT.patch
 Patch1:		qtlocation-clang10-c++20.patch
-Patch2:		qtlocation-c++20.patch
+# Updated 3rd party component to fix QTBUG-82273
+Source1:	https://raw.githubusercontent.com/mapbox/earcut.hpp/master/include/mapbox/earcut.hpp
 BuildRequires:	qt5-qtbase-devel >= %{version}
 BuildRequires:	pkgconfig(Qt5Core) = %{version}
 BuildRequires:	pkgconfig(Qt5Gui) >= %{version}
@@ -227,6 +228,12 @@ Devel files needed to build apps based on Qt Location.
 # Get rid of outdated bundled boost, let's use system boost
 rm -rf src/3rdparty/mapbox-gl-native/deps/boost
 sed -i -e '/boost/d' src/3rdparty/mapbox-gl-native/mapbox-gl-native.pro
+
+# And update outdated bundled earcut
+cp -f %{S:1} src/3rdparty/earcut/
+cp -f %{S:1} src/3rdparty/mapbox-gl-native/deps/earcut/0.12.4/include/mapbox/
+# And adapt to new upstream sources...
+sed -i -e 's,qt_mapbox,mapbox,g' src/location/declarativemaps/qdeclarativepolygonmapitem.cpp
 
 %build
 %qmake_qt5
