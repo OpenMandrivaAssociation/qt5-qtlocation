@@ -23,7 +23,7 @@ Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	1
+Release:	2
 %define qttarballdir qtlocation-everywhere-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -205,7 +205,8 @@ The Location module provides location information via QML and C++ interfaces.
 %package -n %{qtlocationd}
 Summary: Devel files needed to build apps based on QtLocation
 Group: Development/KDE and Qt
-Requires: %{qtlocation} = %version
+Requires: %{qtlocation} = %{version}
+Requires: %{name} = %{version}
 
 %description -n %{qtlocationd}
 Devel files needed to build apps based on Qt Location.
