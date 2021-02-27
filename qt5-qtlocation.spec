@@ -23,7 +23,7 @@ Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	1
+Release:	2
 %define qttarballdir qtlocation-everywhere-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -118,20 +118,19 @@ Devel files needed to build apps based on Qt Positioning.
 %{_qt5_libdir}/cmake/Qt5Positioning
 %{_qt5_exampledir}/positioning
 %{_qt5_prefix}/mkspecs/modules/qt_lib_positioning.pri
-%{_libdir}/qt5/mkspecs/modules/qt_lib_location_private.pri
 %{_qt5_includedir}/QtPositioning
 %exclude %{_qt5_includedir}/QtPositioning/%version
 
 #------------------------------------------------------------------------------
 
 %package -n %{qtpositioning_p_d}
-Summary: Devel files needed to build apps based on QtPositioning
+Summary:  Private headers for QtPositioning
 Group:    Development/KDE and Qt
 Requires: %{qtpositioningd} = %version
 Provides: qt5-positioning-private-devel = %version
 
 %description -n %{qtpositioning_p_d}
-Devel files needed to build apps based on QtPositioning.
+Private headers for QtPositioning.
 
 %files -n %{qtpositioning_p_d}
 %{_qt5_includedir}/QtPositioning/%version
@@ -174,13 +173,13 @@ Devel files needed to build apps based on Qt PositioningQuick.
 #------------------------------------------------------------------------------
 
 %package -n %{qtpositioningquick_p_d}
-Summary: Devel files needed to build apps based on QtPositioningQuick
+Summary:  Private headers for QtPositioningQuick
 Group:    Development/KDE and Qt
 Requires: %{qtpositioningquickd} = %version
 Provides: qt5-positioningquick-private-devel = %version
 
 %description -n %{qtpositioningquick_p_d}
-Devel files needed to build apps based on QtPositioningQuick.
+Private headers for QtPositioningQuick.
 
 %files -n %{qtpositioningquick_p_d}
 %{_qt5_includedir}/QtPositioningQuick/%version
@@ -220,6 +219,21 @@ Devel files needed to build apps based on Qt Location.
 %{_qt5_exampledir}/location
 %exclude %{_qt5_includedir}/QtLocation/%version
 %{_qt5_prefix}/mkspecs/modules/qt_lib_location.pri
+
+#------------------------------------------------------------------------------
+
+%package -n %{qtlocation_p_d}
+Summary:  Private headers for QtLocation
+Group:    Development/KDE and Qt
+Requires: %{qtlocationd} = %version
+Provides: qt5-location-private-devel = %version
+
+%description -n %{qtlocation_p_d}
+Private headers for QtLocation
+
+%files -n %{qtlocation_p_d}
+%{_qt5_includedir}/QtLocation/%version
+%{_libdir}/qt5/mkspecs/modules/qt_lib_location_private.pri
 
 #------------------------------------------------------------------------------
 
