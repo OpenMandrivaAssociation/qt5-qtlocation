@@ -1,0 +1,43 @@
+From f7a270142eef06eb493a2f6b544c4ea66c9d5c23 Mon Sep 17 00:00:00 2001
+From: Edward Welbourne <edward.welbourne@qt.io>
+Date: Thu, 22 Oct 2020 19:09:07 +0200
+Subject: [PATCH 5/6] Use QLocale::NorwegianBokmal rather than Norwegian
+
+The short form is a deprecated alias and going away.
+
+Change-Id: I6b095f61a798e8559043cbeac75cd27176a45196
+Reviewed-by: Lars Knoll <lars.knoll@qt.io>
+---
+ tests/auto/qplacemanager/tst_qplacemanager.cpp                  | 2 +-
+ .../qplacemanager_unsupported/tst_qplacemanager_unsupported.cpp | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/tests/auto/qplacemanager/tst_qplacemanager.cpp b/tests/auto/qplacemanager/tst_qplacemanager.cpp
+index 2cb035cd..919be2d9 100644
+--- a/tests/auto/qplacemanager/tst_qplacemanager.cpp
++++ b/tests/auto/qplacemanager/tst_qplacemanager.cpp
+@@ -108,7 +108,7 @@ void tst_QPlaceManager::testLocales()
+     QCOMPARE(placeManager->locales().count(), 1);
+     QCOMPARE(placeManager->locales().at(0), QLocale());
+ 
+-    QLocale locale(QLocale::Norwegian, QLocale::Norway);
++    QLocale locale(QLocale::NorwegianBokmal, QLocale::Norway);
+     placeManager->setLocale(locale);
+ 
+     QCOMPARE(placeManager->locales().at(0), locale);
+diff --git a/tests/auto/qplacemanager_unsupported/tst_qplacemanager_unsupported.cpp b/tests/auto/qplacemanager_unsupported/tst_qplacemanager_unsupported.cpp
+index 98a9dd31..58300904 100644
+--- a/tests/auto/qplacemanager_unsupported/tst_qplacemanager_unsupported.cpp
++++ b/tests/auto/qplacemanager_unsupported/tst_qplacemanager_unsupported.cpp
+@@ -120,7 +120,7 @@ void tst_QPlaceManagerUnsupported::testLocales()
+ {
+     QVERIFY(m_manager->locales().isEmpty());
+ 
+-    QLocale locale(QLocale::Norwegian, QLocale::Norway);
++    QLocale locale(QLocale::NorwegianBokmal, QLocale::Norway);
+     m_manager->setLocale(locale);
+ 
+     QVERIFY(m_manager->locales().isEmpty());
+-- 
+2.31.1
+

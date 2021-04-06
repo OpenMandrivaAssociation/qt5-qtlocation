@@ -17,15 +17,15 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtlocation
-Version:	5.15.2
+Version:	5.15.3
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	2
-%define qttarballdir qtlocation-everywhere-src-%{version}
-Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
+Release:	1
+%define qttarballdir qtlocation-everywhere-src-5.15.2
+Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/5.15.2/submodules/%{qttarballdir}.tar.xz
 %endif
 Summary:	Qt Location
 Group:		Development/KDE and Qt
@@ -33,6 +33,12 @@ License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
 URL:		http://www.qt.io
 Patch0:		qtlocation-everywhere-src-5.6.0-G_VALUE_INIT.patch
 Patch1:		qtlocation-clang10-c++20.patch
+# From KDE
+Patch1000:	0001-Bump-version.patch
+Patch1001:	0002-Fix-crash-when-showing-Map-QML-comp.-for-2nd-time.patch
+Patch1003:	0004-Android-fix-Location-properties.patch
+Patch1004:	0005-Use-QLocale-NorwegianBokmal-rather-than-Norwegian.patch
+Patch1005:	0006-Simpler-fix-to-crashing-Qml-Map-appearing-2nd-time.patch
 # Updated 3rd party component to fix QTBUG-82273
 Source1:	https://raw.githubusercontent.com/mapbox/earcut.hpp/master/include/mapbox/earcut.hpp
 BuildRequires:	qt5-qtbase-devel >= %{version}
@@ -239,6 +245,7 @@ Private headers for QtLocation
 
 %prep
 %autosetup -n %qttarballdir -p1
+%{_qt5_prefix}/bin/syncqt.pl -version %{version}
 
 # Get rid of outdated bundled boost, let's use system boost
 rm -rf src/3rdparty/mapbox-gl-native/deps/boost
