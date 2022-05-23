@@ -200,6 +200,7 @@ The Location module provides location information via QML and C++ interfaces.
 
 %files -n %{qtlocation}
 %{_qt5_libdir}/libQt5Location.so.%{api}*
+%{_qt5_prefix}/qml/Qt/labs/location
 
 #------------------------------------------------------------------------------
 
@@ -254,7 +255,8 @@ cp -f %{S:1} src/3rdparty/mapbox-gl-native/deps/earcut/0.12.4/include/mapbox/
 sed -i -e 's,qt_mapbox,mapbox,g' src/location/declarativemaps/qdeclarativepolygonmapitem.cpp
 
 %build
-%qmake_qt5
+# FIXME -spec linux-g++ is a workaround for a link time failure
+%qmake_qt5 -spec linux-g++
 %make_build
 
 #------------------------------------------------------------------------------
