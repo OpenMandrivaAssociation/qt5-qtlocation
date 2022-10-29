@@ -1,4 +1,4 @@
-From 0aaafdfbee4d5ee6de183d5bc1fcae2033790e3a Mon Sep 17 00:00:00 2001
+From 0fabfb2a14aabb392e487c44d951846bbe3f727e Mon Sep 17 00:00:00 2001
 From: Antonio Rojas <arojas@archlinux.org>
 Date: Tue, 22 Mar 2022 22:42:58 +0000
 Subject: [PATCH 2/3] Fix appendChildNode() call
@@ -21,5 +21,5 @@ index a978573d..11e1466f 100644
  
      if (!m_mapObjectsRootNode) {
 -- 
-2.37.2
+2.38.1
 
