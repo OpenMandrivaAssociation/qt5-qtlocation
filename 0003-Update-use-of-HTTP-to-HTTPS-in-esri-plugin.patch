@@ -1,4 +1,4 @@
-From f920a6cc2931402023840c223fce2fed321e28ea Mon Sep 17 00:00:00 2001
+From f991e28cb0a670597f1955585c76ce8a26ce9e4b Mon Sep 17 00:00:00 2001
 From: Milo Kerr <mkerrdev@gmail.com>
 Date: Thu, 25 Mar 2021 01:45:43 -0400
 Subject: [PATCH 3/3] Update use of HTTP to HTTPS in esri plugin
