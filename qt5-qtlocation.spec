@@ -17,13 +17,13 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtlocation
-Version:	5.15.8
+Version:	5.15.9
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	2
+Release:	1
 %define qttarballdir qtlocation-everywhere-opensource-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -37,6 +37,7 @@ Patch1:		qtlocation-clang10-c++20.patch
 Patch1000:	0001-Fix-build-of-Qt.labs.location-QML-plugin.patch
 Patch1001:	0002-Fix-appendChildNode-call.patch
 Patch1002:	0003-Update-use-of-HTTP-to-HTTPS-in-esri-plugin.patch
+Patch1003:	0004-Update-mapbox-gl-native.patch
 # Updated 3rd party component to fix QTBUG-82273
 Source1:	https://raw.githubusercontent.com/mapbox/earcut.hpp/master/include/mapbox/earcut.hpp
 BuildRequires:	qt5-qtbase-devel >= %{version}

@@ -1,7 +1,7 @@
-From f991e28cb0a670597f1955585c76ce8a26ce9e4b Mon Sep 17 00:00:00 2001
+From 88a2fa06b006d2cdc0f0a919f2b4d59cc8babbc7 Mon Sep 17 00:00:00 2001
 From: Milo Kerr <mkerrdev@gmail.com>
 Date: Thu, 25 Mar 2021 01:45:43 -0400
-Subject: [PATCH 3/3] Update use of HTTP to HTTPS in esri plugin
+Subject: [PATCH 3/4] Update use of HTTP to HTTPS in esri plugin
 
 When accessed via HTTP, the arcgis.com endpoints return:
 
@@ -274,5 +274,5 @@ index 3858ddf5..af66f28e 100644
  PlaceManagerEngineEsri::PlaceManagerEngineEsri(const QVariantMap &parameters, QGeoServiceProvider::Error *error,
                                                 QString *errorString) :
 -- 
-2.38.1
+2.40.0.rc2
 
