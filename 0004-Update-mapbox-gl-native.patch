@@ -25,6 +25,17 @@ diff -urN qtlocation-everywhere-src-5.15.9/src/3rdparty/mapbox-gl-native/include
  #include <cstdlib>
  #include <exception>
  
+diff -urN qtlocation-everywhere-src-5.15.9/src/3rdparty/mapbox-gl-native/include/mbgl/util/unique_any.hpp qtlocation/src/3rdparty/mapbox-gl-native/include/mbgl/util/unique_any.hpp
+--- qtlocation-everywhere-src-5.15.9/src/3rdparty/mapbox-gl-native/include/mbgl/util/unique_any.hpp	2023-03-23 15:00:13.000000000 +0100
++++ qtlocation/src/3rdparty/mapbox-gl-native/include/mbgl/util/unique_any.hpp	2023-04-21 19:29:34.677755219 +0200
+@@ -3,6 +3,7 @@
+ #include <typeinfo>
+ #include <type_traits>
+ #include <stdexcept>
++#include <utility>
+ namespace mbgl {
+ namespace util {
+ 
 diff -urN qtlocation-everywhere-src-5.15.9/src/3rdparty/mapbox-gl-native/src/mbgl/gl/stencil_mode.hpp qtlocation/src/3rdparty/mapbox-gl-native/src/mbgl/gl/stencil_mode.hpp
 --- qtlocation-everywhere-src-5.15.9/src/3rdparty/mapbox-gl-native/src/mbgl/gl/stencil_mode.hpp	2023-03-23 15:00:13.000000000 +0100
 +++ qtlocation/src/3rdparty/mapbox-gl-native/src/mbgl/gl/stencil_mode.hpp	2023-04-10 21:14:44.506377657 +0200
