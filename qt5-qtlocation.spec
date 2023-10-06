@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtlocation
-Version:	5.15.10
+Version:	5.15.11
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
@@ -35,9 +35,8 @@ Patch0:		qtlocation-everywhere-src-5.6.0-G_VALUE_INIT.patch
 Patch1:		qtlocation-clang10-c++20.patch
 # From KDE
 Patch1000:	0001-Fix-appendChildNode-call.patch
-Patch1001:	0002-Update-use-of-HTTP-to-HTTPS-in-esri-plugin.patch
-# 0003 and 0004 update a git submodule, so they have to be rediffed
-Patch1003:	0004-Update-mapbox-gl-native.patch
+# 0002, 0003 and 0004 update a git submodule, so they have to be rediffed
+Patch1001:	0004-Update-mapbox-gl-native.patch
 # Updated 3rd party component to fix QTBUG-82273
 Source1:	https://raw.githubusercontent.com/mapbox/earcut.hpp/master/include/mapbox/earcut.hpp
 BuildRequires:	qt5-qtbase-devel >= %{version}
@@ -202,7 +201,7 @@ The Location module provides location information via QML and C++ interfaces.
 
 %files -n %{qtlocation}
 %{_qt5_libdir}/libQt5Location.so.%{api}*
-%{_qt5_prefix}/qml/Qt/labs/location
+%{_qt5_prefix}/qml/QtLocation
 
 #------------------------------------------------------------------------------
 
