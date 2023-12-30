@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtlocation
-Version:	5.15.11
+Version:	5.15.12
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
@@ -34,9 +34,8 @@ URL:		http://www.qt.io
 Patch0:		qtlocation-everywhere-src-5.6.0-G_VALUE_INIT.patch
 Patch1:		qtlocation-clang10-c++20.patch
 # From KDE
-Patch1000:	0001-Fix-appendChildNode-call.patch
 # 0002, 0003 and 0004 update a git submodule, so they have to be rediffed
-Patch1001:	0004-Update-mapbox-gl-native.patch
+%(P=1001; cd %{_sourcedir}; for i in [0-9][0-9][0-9][0-9]-*.patch; do echo -e "Patch$P:\t$i"; P=$((P+1)); done)
 # Updated 3rd party component to fix QTBUG-82273
 Source1:	https://raw.githubusercontent.com/mapbox/earcut.hpp/master/include/mapbox/earcut.hpp
 BuildRequires:	qt5-qtbase-devel >= %{version}
