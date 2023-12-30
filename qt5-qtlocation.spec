@@ -66,6 +66,7 @@ Window System. Qt is written in C++ and is fully object-oriented.
 
 %files
 %{_qt5_prefix}/qml/QtLocation
+%{_qt5_prefix}/qml/Qt/labs/location
 %{_qt5_plugindir}/geoservices
 
 #------------------------------------------------------------------------------
