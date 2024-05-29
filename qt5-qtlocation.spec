@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtlocation
-Version:	5.15.12
+Version:	5.15.14
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
@@ -27,17 +27,21 @@ Release:	1
 %define qttarballdir qtlocation-everywhere-opensource-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
+# This is pulled in as a submodule and needs to be kept up to date,
+# KDE branch diverges from qt tarballs.
+Source1:	https://invent.kde.org/qt/qt/qtlocation-mapboxgl/-/archive/kde/5.15/qtlocation-mapboxgl-kde-5.15.tar.bz2
 Summary:	Qt Location
 Group:		Development/KDE and Qt
 License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
 URL:		http://www.qt.io
 Patch0:		qtlocation-everywhere-src-5.6.0-G_VALUE_INIT.patch
 Patch1:		qtlocation-clang10-c++20.patch
+Patch2:		qtlocation-5.15-compile.patch
 # From KDE
 # 0002, 0003 and 0004 update a git submodule, so they have to be rediffed
 %(P=1001; cd %{_sourcedir}; for i in [0-9][0-9][0-9][0-9]-*.patch; do echo -e "Patch$P:\t$i"; P=$((P+1)); done)
 # Updated 3rd party component to fix QTBUG-82273
-Source1:	https://raw.githubusercontent.com/mapbox/earcut.hpp/master/include/mapbox/earcut.hpp
+Source2:	https://raw.githubusercontent.com/mapbox/earcut.hpp/master/include/mapbox/earcut.hpp
 BuildRequires:	qt5-qtbase-devel >= %{version}
 BuildRequires:	pkgconfig(Qt5Core) = %{version}
 BuildRequires:	pkgconfig(Qt5Gui) >= %{version}
@@ -245,13 +249,20 @@ Private headers for QtLocation
 %autosetup -n %(echo %qttarballdir|sed -e 's,-opensource,,') -p1
 %{_qt5_prefix}/bin/syncqt.pl -version %{version}
 
+# Update bundled mapbox-gl-native
+rm -rf src/3rdparty/mapbox-gl-native
+cd src/3rdparty
+tar xf %{S:1}
+mv qtlocation-mapboxgl* mapbox-gl-native
+cd ../..
+
 # Get rid of outdated bundled boost, let's use system boost
 rm -rf src/3rdparty/mapbox-gl-native/deps/boost
 sed -i -e '/boost/d' src/3rdparty/mapbox-gl-native/mapbox-gl-native.pro
 
 # And update outdated bundled earcut
-cp -f %{S:1} src/3rdparty/earcut/
-cp -f %{S:1} src/3rdparty/mapbox-gl-native/deps/earcut/0.12.4/include/mapbox/
+cp -f %{S:2} src/3rdparty/earcut/
+cp -f %{S:2} src/3rdparty/mapbox-gl-native/deps/earcut/0.12.4/include/mapbox/
 # And adapt to new upstream sources...
 sed -i -e 's,qt_mapbox,mapbox,g' src/location/declarativemaps/qdeclarativepolygonmapitem.cpp
 

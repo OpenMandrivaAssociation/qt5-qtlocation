@@ -1,0 +1,12 @@
+diff -up qtlocation-everywhere-src-5.15.12/src/3rdparty/mapbox-gl-native/deps/rapidjson/1.1.0/include/rapidjson/document.h.omv~ qtlocation-everywhere-src-5.15.12/src/3rdparty/mapbox-gl-native/deps/rapidjson/1.1.0/include/rapidjson/document.h
+--- qtlocation-everywhere-src-5.15.12/src/3rdparty/mapbox-gl-native/deps/rapidjson/1.1.0/include/rapidjson/document.h.omv~	2024-05-29 17:19:11.316544806 +0200
++++ qtlocation-everywhere-src-5.15.12/src/3rdparty/mapbox-gl-native/deps/rapidjson/1.1.0/include/rapidjson/document.h	2024-05-29 17:19:35.008804326 +0200
+@@ -324,7 +324,7 @@ struct GenericStringRef {
+     operator const Ch *() const { return s; }
+ 
+     const Ch* const s; //!< plain CharType pointer
+-    const SizeType length; //!< length of the string (excluding the trailing NULL terminator)
++    SizeType length; //!< length of the string (excluding the trailing NULL terminator)
+ 
+ private:
+     //! Disallow construction from non-const array

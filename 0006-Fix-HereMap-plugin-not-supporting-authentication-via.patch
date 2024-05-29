@@ -1,7 +1,7 @@
-From 5b27b8921f1f2de93573df903c47aee634209f80 Mon Sep 17 00:00:00 2001
+From 5e925cd7370e3fbf39b4429072dac9e2e9d1c561 Mon Sep 17 00:00:00 2001
 From: Lorenzo Lucignano <lorenzo.lucignano@topseven.com>
 Date: Mon, 23 Oct 2023 09:50:49 +0200
-Subject: [PATCH 6/6] Fix HereMap plugin not supporting authentication via
+Subject: [PATCH 6/7] Fix HereMap plugin not supporting authentication via
  apiKey
 
 The authentication of the Here services no longer supports app id and token.
@@ -448,5 +448,5 @@ index 8db47beb..030006f5 100644
  
  QT_END_NAMESPACE
 -- 
-2.43.0
+2.45.1
 
