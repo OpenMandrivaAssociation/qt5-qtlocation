@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtlocation
-Version:	5.15.14
+Version:	5.15.15
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
