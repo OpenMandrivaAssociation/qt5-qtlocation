@@ -33,7 +33,7 @@ Source1:	https://invent.kde.org/qt/qt/qtlocation-mapboxgl/-/archive/kde/5.15/qtl
 Summary:	Qt Location
 Group:		Development/KDE and Qt
 License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
-URL:		http://www.qt.io
+URL:		https://www.qt.io
 Patch0:		qtlocation-everywhere-src-5.6.0-G_VALUE_INIT.patch
 Patch1:		qtlocation-clang10-c++20.patch
 Patch2:		qtlocation-5.15-compile.patch
