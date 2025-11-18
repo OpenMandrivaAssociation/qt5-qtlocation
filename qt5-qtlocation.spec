@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtlocation
-Version:	5.15.15
+Version:	5.15.18
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
@@ -37,6 +37,7 @@ URL:		https://www.qt.io
 Patch0:		qtlocation-everywhere-src-5.6.0-G_VALUE_INIT.patch
 Patch1:		qtlocation-clang10-c++20.patch
 Patch2:		qtlocation-5.15-compile.patch
+Patch3:		qtlocation-5.15.18-compile.patch
 # From KDE
 # 0002, 0003 and 0004 update a git submodule, so they have to be rediffed
 %(P=1001; cd %{_sourcedir}; for i in [0-9][0-9][0-9][0-9]-*.patch; do echo -e "Patch$P:\t$i"; P=$((P+1)); done)
@@ -266,9 +267,13 @@ cp -f %{S:2} src/3rdparty/mapbox-gl-native/deps/earcut/0.12.4/include/mapbox/
 # And adapt to new upstream sources...
 sed -i -e 's,qt_mapbox,mapbox,g' src/location/declarativemaps/qdeclarativepolygonmapitem.cpp
 
+# This patch fixes mapbox, so it has to be applied after it has been replaced
+%patch 3 -p1 -b .compile~
+
 %build
 # FIXME -spec linux-g++ is a workaround for a link time failure
-%qmake_qt5 -spec linux-g++
+%qmake_qt5
+#-spec linux-g++
 %make_build
 
 #------------------------------------------------------------------------------

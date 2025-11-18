@@ -1,0 +1,12 @@
+diff -up qtlocation-everywhere-src-5.15.18/src/3rdparty/mapbox-gl-native/src/mbgl/layout/symbol_projection.cpp.omv~ qtlocation-everywhere-src-5.15.18/src/3rdparty/mapbox-gl-native/src/mbgl/layout/symbol_projection.cpp
+--- qtlocation-everywhere-src-5.15.18/src/3rdparty/mapbox-gl-native/src/mbgl/layout/symbol_projection.cpp.omv~	2025-11-18 21:03:10.629098077 +0100
++++ qtlocation-everywhere-src-5.15.18/src/3rdparty/mapbox-gl-native/src/mbgl/layout/symbol_projection.cpp	2025-11-18 21:03:21.552831830 +0100
+@@ -95,7 +95,7 @@ namespace mbgl {
+     PointAndCameraDistance project(const Point<float>& point, const mat4& matrix) {
+         vec4 pos = {{ point.x, point.y, 0, 1 }};
+         matrix::transformMat4(pos, pos, matrix);
+-        return {{ static_cast<float>(pos[0] / pos[3]), static_cast<float>(pos[1] / pos[3]) }, pos[3] };
++        return {{ static_cast<float>(pos[0] / pos[3]), static_cast<float>(pos[1] / pos[3]) }, static_cast<float>(pos[3]) };
+     }
+ 
+     float evaluateSizeForFeature(const ZoomEvaluatedSize& zoomEvaluatedSize, const PlacedSymbol& placedSymbol) {
