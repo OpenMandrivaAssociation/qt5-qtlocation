@@ -1,4 +1,4 @@
-From 5e925cd7370e3fbf39b4429072dac9e2e9d1c561 Mon Sep 17 00:00:00 2001
+From f50d423edb5f91af6dc21b3abbfafada537285c1 Mon Sep 17 00:00:00 2001
 From: Lorenzo Lucignano <lorenzo.lucignano@topseven.com>
 Date: Mon, 23 Oct 2023 09:50:49 +0200
 Subject: [PATCH 6/7] Fix HereMap plugin not supporting authentication via
@@ -30,7 +30,7 @@ Reviewed-by: Volker Hilsheimer <volker.hilsheimer@qt.io>
  12 files changed, 53 insertions(+), 93 deletions(-)
 
 diff --git a/src/plugins/geoservices/nokia/qgeocodingmanagerengine_nokia.cpp b/src/plugins/geoservices/nokia/qgeocodingmanagerengine_nokia.cpp
-index 68b2429e..deef29f9 100644
+index 68b2429ec..deef29f91 100644
 --- a/src/plugins/geoservices/nokia/qgeocodingmanagerengine_nokia.cpp
 +++ b/src/plugins/geoservices/nokia/qgeocodingmanagerengine_nokia.cpp
 @@ -66,11 +66,8 @@ QGeoCodingManagerEngineNokia::QGeoCodingManagerEngineNokia(
@@ -64,7 +64,7 @@ index 68b2429e..deef29f9 100644
  
      return authenticationString;
 diff --git a/src/plugins/geoservices/nokia/qgeocodingmanagerengine_nokia.h b/src/plugins/geoservices/nokia/qgeocodingmanagerengine_nokia.h
-index 9e1564aa..a7cfd06a 100644
+index 9e1564aa2..a7cfd06a6 100644
 --- a/src/plugins/geoservices/nokia/qgeocodingmanagerengine_nokia.h
 +++ b/src/plugins/geoservices/nokia/qgeocodingmanagerengine_nokia.h
 @@ -82,8 +82,7 @@ private:
@@ -78,7 +78,7 @@ index 9e1564aa..a7cfd06a 100644
  
  QT_END_NAMESPACE
 diff --git a/src/plugins/geoservices/nokia/qgeoerror_messages.cpp b/src/plugins/geoservices/nokia/qgeoerror_messages.cpp
-index 576ecd43..f49e0905 100644
+index 576ecd431..f49e09052 100644
 --- a/src/plugins/geoservices/nokia/qgeoerror_messages.cpp
 +++ b/src/plugins/geoservices/nokia/qgeoerror_messages.cpp
 @@ -39,7 +39,7 @@
@@ -91,7 +91,7 @@ index 576ecd43..f49e0905 100644
  const char REMOVING_PLACE_NOT_SUPPORTED[] = QT_TRANSLATE_NOOP("QtLocationQML", "Removing places is not supported.");
  const char SAVING_CATEGORY_NOT_SUPPORTED[] = QT_TRANSLATE_NOOP("QtLocationQML", "Saving categories is not supported.");
 diff --git a/src/plugins/geoservices/nokia/qgeoroutingmanagerengine_nokia.cpp b/src/plugins/geoservices/nokia/qgeoroutingmanagerengine_nokia.cpp
-index 73b998b1..a938096b 100644
+index 73b998b12..a938096b0 100644
 --- a/src/plugins/geoservices/nokia/qgeoroutingmanagerengine_nokia.cpp
 +++ b/src/plugins/geoservices/nokia/qgeoroutingmanagerengine_nokia.cpp
 @@ -60,8 +60,7 @@ QGeoRoutingManagerEngineNokia::QGeoRoutingManagerEngineNokia(
@@ -137,7 +137,7 @@ index 73b998b1..a938096b 100644
      baseRequest += "/routing/7.2/getroute.xml";
  
 diff --git a/src/plugins/geoservices/nokia/qgeoroutingmanagerengine_nokia.h b/src/plugins/geoservices/nokia/qgeoroutingmanagerengine_nokia.h
-index 9335bcac..67fb5825 100644
+index 9335bcacf..67fb5825c 100644
 --- a/src/plugins/geoservices/nokia/qgeoroutingmanagerengine_nokia.h
 +++ b/src/plugins/geoservices/nokia/qgeoroutingmanagerengine_nokia.h
 @@ -77,8 +77,7 @@ private:
@@ -151,7 +151,7 @@ index 9335bcac..67fb5825 100644
  
  QT_END_NAMESPACE
 diff --git a/src/plugins/geoservices/nokia/qgeoserviceproviderplugin_nokia.cpp b/src/plugins/geoservices/nokia/qgeoserviceproviderplugin_nokia.cpp
-index e4ef86d6..2c53dd16 100644
+index e4ef86d6c..2c53dd169 100644
 --- a/src/plugins/geoservices/nokia/qgeoserviceproviderplugin_nokia.cpp
 +++ b/src/plugins/geoservices/nokia/qgeoserviceproviderplugin_nokia.cpp
 @@ -75,20 +75,15 @@ namespace
@@ -181,7 +181,7 @@ index e4ef86d6..2c53dd16 100644
          *error = QGeoServiceProvider::MissingRequiredParameterError;
          *errorString = QCoreApplication::translate(NOKIA_PLUGIN_CONTEXT_NAME, MISSED_CREDENTIALS);
 diff --git a/src/plugins/geoservices/nokia/qgeotilefetcher_nokia.cpp b/src/plugins/geoservices/nokia/qgeotilefetcher_nokia.cpp
-index d07a93ba..4cfd62f8 100644
+index d07a93ba3..4cfd62f89 100644
 --- a/src/plugins/geoservices/nokia/qgeotilefetcher_nokia.cpp
 +++ b/src/plugins/geoservices/nokia/qgeotilefetcher_nokia.cpp
 @@ -84,8 +84,7 @@ QGeoTileFetcherNokia::QGeoTileFetcherNokia(const QVariantMap &parameters,
@@ -285,7 +285,7 @@ index d07a93ba..4cfd62f8 100644
  
      QNetworkRequest netRequest((QUrl(versionUrl)));
 diff --git a/src/plugins/geoservices/nokia/qgeotilefetcher_nokia.h b/src/plugins/geoservices/nokia/qgeotilefetcher_nokia.h
-index 06d1bba9..ee0cb0e9 100644
+index 06d1bba98..ee0cb0e9a 100644
 --- a/src/plugins/geoservices/nokia/qgeotilefetcher_nokia.h
 +++ b/src/plugins/geoservices/nokia/qgeotilefetcher_nokia.h
 @@ -62,8 +62,7 @@ public:
@@ -312,7 +312,7 @@ index 06d1bba9..ee0cb0e9 100644
      QGeoUriProvider *m_aerialUriProvider;
  };
 diff --git a/src/plugins/geoservices/nokia/qgeouriprovider.cpp b/src/plugins/geoservices/nokia/qgeouriprovider.cpp
-index 7be90bb2..6a4f6986 100644
+index 7be90bb25..6a4f69868 100644
 --- a/src/plugins/geoservices/nokia/qgeouriprovider.cpp
 +++ b/src/plugins/geoservices/nokia/qgeouriprovider.cpp
 @@ -61,7 +61,7 @@ QGeoUriProvider::QGeoUriProvider(
@@ -325,7 +325,7 @@ index 7be90bb2..6a4f6986 100644
          return result;
      }
 diff --git a/src/plugins/geoservices/nokia/qplacemanagerengine_nokiav2.cpp b/src/plugins/geoservices/nokia/qplacemanagerengine_nokiav2.cpp
-index c5c05a2e..4c6e9774 100644
+index c5c05a2e1..4c6e9774f 100644
 --- a/src/plugins/geoservices/nokia/qplacemanagerengine_nokiav2.cpp
 +++ b/src/plugins/geoservices/nokia/qplacemanagerengine_nokiav2.cpp
 @@ -208,8 +208,7 @@ QPlaceManagerEngineNokiaV2::QPlaceManagerEngineNokiaV2(
@@ -412,7 +412,7 @@ index c5c05a2e..4c6e9774 100644
      QUrl requestUrl = url;
      requestUrl.setQuery(queryItems);
 diff --git a/src/plugins/geoservices/nokia/qplacemanagerengine_nokiav2.h b/src/plugins/geoservices/nokia/qplacemanagerengine_nokiav2.h
-index cd632958..6784ce4f 100644
+index cd632958f..6784ce4f5 100644
 --- a/src/plugins/geoservices/nokia/qplacemanagerengine_nokiav2.h
 +++ b/src/plugins/geoservices/nokia/qplacemanagerengine_nokiav2.h
 @@ -122,8 +122,7 @@ private:
@@ -426,7 +426,7 @@ index cd632958..6784ce4f 100644
      QString m_localDataPath;
      QString m_theme;
 diff --git a/src/plugins/geoservices/nokia/uri_constants.cpp b/src/plugins/geoservices/nokia/uri_constants.cpp
-index 8db47beb..030006f5 100644
+index 8db47beb5..030006f59 100644
 --- a/src/plugins/geoservices/nokia/uri_constants.cpp
 +++ b/src/plugins/geoservices/nokia/uri_constants.cpp
 @@ -37,11 +37,11 @@
@@ -448,5 +448,5 @@ index 8db47beb..030006f5 100644
  
  QT_END_NAMESPACE
 -- 
-2.45.1
+2.53.0
 

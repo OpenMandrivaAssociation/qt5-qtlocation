@@ -1,0 +1,12 @@
+diff -up qtlocation-everywhere-src-5.15.19/src/plugins/position/gypsy/qgeosatelliteinfosource_gypsy.cpp.omv~ qtlocation-everywhere-src-5.15.19/src/plugins/position/gypsy/qgeosatelliteinfosource_gypsy.cpp
+--- qtlocation-everywhere-src-5.15.19/src/plugins/position/gypsy/qgeosatelliteinfosource_gypsy.cpp.omv~	2026-06-17 04:33:41.055200516 +0200
++++ qtlocation-everywhere-src-5.15.19/src/plugins/position/gypsy/qgeosatelliteinfosource_gypsy.cpp	2026-06-17 04:35:04.874141201 +0200
+@@ -85,7 +85,7 @@ guint SatelliteGypsyEngine::eng_g_signal
+ 
+ void SatelliteGypsyEngine::eng_g_free(gpointer mem)
+ {
+-    return ::g_free(mem);
++    return g_free(mem); // it's a macro, can't use ::
+ }
+ // Gypsy symbols
+ GypsyControl *SatelliteGypsyEngine::eng_gypsy_control_get_default (void)

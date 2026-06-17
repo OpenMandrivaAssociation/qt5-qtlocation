@@ -17,7 +17,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtlocation
-Version:	5.15.18
+Version:	5.15.19
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qtlocation-everywhere-src-%{version}-%{beta}
@@ -25,7 +25,7 @@ Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d.
 %else
 Release:	1
 %define qttarballdir qtlocation-everywhere-opensource-src-%{version}
-Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
+Source0:	http://download.qt.io/archive/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
 # This is pulled in as a submodule and needs to be kept up to date,
 # KDE branch diverges from qt tarballs.
@@ -38,6 +38,7 @@ Patch0:		qtlocation-everywhere-src-5.6.0-G_VALUE_INIT.patch
 Patch1:		qtlocation-clang10-c++20.patch
 Patch2:		qtlocation-5.15-compile.patch
 Patch3:		qtlocation-5.15.18-compile.patch
+Patch4:		qtlocation-5.15.19-g_free-is-a-macro.patch
 # From KDE
 # 0002, 0003 and 0004 update a git submodule, so they have to be rediffed
 %(P=1001; cd %{_sourcedir}; for i in [0-9][0-9][0-9][0-9]-*.patch; do echo -e "Patch$P:\t$i"; P=$((P+1)); done)
@@ -61,6 +62,7 @@ BuildRequires:	pkgconfig(icu-uc)
 BuildRequires:	pkgconfig(libssl)
 BuildRequires:	pkgconfig(libcrypto)
 BuildRequires:	boost-devel
+BuildRequires:	make
 # For the Provides: generator
 BuildRequires:	cmake >= 3.11.0-1
 
