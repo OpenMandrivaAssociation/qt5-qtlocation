@@ -16,6 +16,10 @@
 
 %define _qt5_prefix %{_libdir}/qt%{api}
 
+# Examples import Local, WeatherInfo and Qt.GeoJson. Those plugins are built
+# beside the example, not installed as system QML modules.
+%global __requires_exclude ^qml\\((Local|WeatherInfo|Qt\\.GeoJson)\\)$
+
 Name:		qt5-qtlocation
 Version:	5.15.19
 %if "%{beta}" != ""
